@@ -28,7 +28,6 @@ export function PlannerDashboard() {
     plan,
     planLoading,
     planError,
-    planSource,
     updateState,
     togglePillar,
     resetAll,
@@ -78,7 +77,6 @@ export function PlannerDashboard() {
           plan={plan}
           planLoading={planLoading}
           planError={planError}
-          planSource={planSource}
           onGeneratePlan={generatePlan}
         />
       </div>

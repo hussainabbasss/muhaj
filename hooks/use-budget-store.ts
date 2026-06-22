@@ -7,6 +7,7 @@ import type { ApiFlight, FlightDataSource, FlightInsights, FlightsApiResponse } 
 import { mapBudgetToPlanRequest } from "@/lib/plan/generate";
 import type { GeneratedPlan, PlanApiResponse } from "@/lib/plan/types";
 import { clearBudgetState, loadBudgetState, saveBudgetState } from "@/lib/storage";
+import { sanitizeUserMessage } from "@/lib/ui/sanitize-user-message";
 import type { BudgetState, CostFlash, PillarKey } from "@/lib/types";
 
 export function useBudgetStore() {
@@ -21,7 +22,6 @@ export function useBudgetStore() {
   const [plan, setPlan] = useState<GeneratedPlan | null>(null);
   const [planLoading, setPlanLoading] = useState(false);
   const [planError, setPlanError] = useState<string | null>(null);
-  const [planSource, setPlanSource] = useState<PlanApiResponse["source"] | null>(null);
   const lastFetchKeyRef = useRef<string | null>(null);
   const initialFlightSearchRef = useRef(false);
   const prevTotalRef = useRef<number | null>(null);
@@ -105,7 +105,9 @@ export function useBudgetStore() {
         applyFlightResponse(data, fetchKey);
         return { skipped: false as const };
       } catch (error) {
-        const message = error instanceof Error ? error.message : "Flight search failed.";
+        const message = sanitizeUserMessage(
+          error instanceof Error ? error.message : "Flight search failed.",
+        );
         setFlightError(message);
         return { skipped: false as const, error: message };
       } finally {
@@ -161,9 +163,10 @@ export function useBudgetStore() {
 
       const data = (await response.json()) as PlanApiResponse;
       setPlan(data.plan);
-      setPlanSource(data.source);
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Plan generation failed.";
+      const message = sanitizeUserMessage(
+        error instanceof Error ? error.message : "Plan generation failed.",
+      );
       setPlanError(message);
     } finally {
       setPlanLoading(false);
@@ -178,7 +181,6 @@ export function useBudgetStore() {
     setFlightError(null);
     setPlan(null);
     setPlanError(null);
-    setPlanSource(null);
     lastFetchKeyRef.current = null;
     initialFlightSearchRef.current = false;
   }, []);
@@ -197,7 +199,6 @@ export function useBudgetStore() {
     plan,
     planLoading,
     planError,
-    planSource,
     updateState,
     togglePillar,
     resetAll,

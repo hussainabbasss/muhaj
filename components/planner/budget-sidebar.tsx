@@ -2,7 +2,8 @@
 
 import { PILLAR_LABELS } from "@/lib/constants";
 import type { PillarKey } from "@/lib/types";
-import { KarbalaStar, ShrineLineArt } from "./karbala-graphics";
+import { KarbalaStar } from "./karbala-graphics";
+import { MuhajLogo } from "./muhaj-logo";
 import { PillarIcon } from "./pillar-icons";
 
 const PILLAR_ORDER: PillarKey[] = [
@@ -31,20 +32,8 @@ export function BudgetSidebar({ pillars, onToggle, onReset }: BudgetSidebarProps
   return (
     <aside className="relative flex w-full shrink-0 flex-col border-b border-white/[0.06] bg-black/20 backdrop-blur-xl md:h-full md:min-h-0 md:w-72 md:border-b-0 md:border-r lg:w-80 xl:w-[22rem]">
       <div className="hidden border-b border-white/[0.06] px-4 py-5 md:block">
-        <div className="mx-auto flex w-fit items-center gap-1.5">
-          <ShrineLineArt className="w-16 shrink-0 opacity-90 lg:w-20" />
-          <div className="text-center">
-            <p
-              className="font-arabic text-4xl font-bold leading-none tracking-wide text-gold-gradient lg:text-5xl"
-              dir="rtl"
-              lang="ar"
-            >
-              مُهَج
-            </p>
-            <p className="mt-1 text-[10px] leading-snug tracking-wide text-zinc-500">
-              The heart&apos;s last blood
-            </p>
-          </div>
+        <div className="mx-auto flex w-fit items-center">
+          <MuhajLogo size="sidebar" />
         </div>
       </div>
 

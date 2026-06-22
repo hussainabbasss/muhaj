@@ -12,7 +12,6 @@ interface ItinerarySidebarProps {
   plan: GeneratedPlan | null;
   planLoading: boolean;
   planError: string | null;
-  planSource: string | null;
   onGeneratePlan: () => Promise<void>;
 }
 
@@ -22,7 +21,6 @@ export function ItinerarySidebar({
   plan,
   planLoading,
   planError,
-  planSource,
   onGeneratePlan,
 }: ItinerarySidebarProps) {
   const [exporting, setExporting] = useState(false);
@@ -108,7 +106,7 @@ export function ItinerarySidebar({
         {planError && <p className="mt-2 text-xs text-red-400">{planError}</p>}
         {plan && !planLoading && (
           <p className="mt-2 text-[10px] text-zinc-500">
-            {plan.days.length} days ready · {planSource === "gemini" ? "Gemini" : "Fallback"}
+            {plan.days.length} days ready
           </p>
         )}
       </div>

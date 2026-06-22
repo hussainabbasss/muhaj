@@ -12,6 +12,7 @@ import {
 } from "@/lib/constants";
 import { MANDOOB_CASH_GATE_PROTOCOL, VISA_COMPLIANCE_ADDRESS } from "@/lib/plan/compliance";
 import { EMERGENCY_DIRECTORY } from "@/lib/plan/emergency";
+import { sanitizePlanSummary } from "@/lib/ui/sanitize-user-message";
 import type { GeneratedPlan } from "@/lib/plan/types";
 import type { ApiFlight } from "@/lib/flights/types";
 import type { BudgetState, PillarKey } from "@/lib/types";
@@ -90,13 +91,13 @@ export function ItineraryDocument({ state, flightResults, plan }: ItineraryDocum
 
         {plan && (
           <>
-            <Text style={pdfStyles.sectionHeader}>AI Daily Itinerary</Text>
+            <Text style={pdfStyles.sectionHeader}>Daily Itinerary</Text>
             {plan.isPeakCrowd && (
               <Text style={[pdfStyles.line, { color: PDF_COLORS.amber }]}>
                 Peak crowd window — {plan.peakWindows.join("; ")}
               </Text>
             )}
-            <Text style={pdfStyles.line}>{plan.summary}</Text>
+            <Text style={pdfStyles.line}>{sanitizePlanSummary(plan.summary)}</Text>
             {plan.days.map((day, index) => (
               <View
                 key={day.date}

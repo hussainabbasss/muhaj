@@ -25,9 +25,12 @@ const scheherazade = Scheherazade_New({
 });
 
 export const metadata: Metadata = {
-  title: "DIY Budget Ziyarat Planner",
+  title: "muhaj",
   description:
     "Budget pilgrimage planner for Karbala and holy cities in Iraq.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export const viewport: Viewport = {

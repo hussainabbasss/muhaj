@@ -42,7 +42,7 @@ export function FlightPanel({
   return (
     <PanelShell
       title="Flight Sniper Terminal"
-      subtitle="Live routes — KHI → Najaf / Baghdad via SerpApi"
+      subtitle="Live routes — KHI → Najaf / Baghdad"
       icon={<PillarIcon pillar="flight" />}
     >
       <div className="mb-4 grid gap-3 sm:grid-cols-2">
@@ -137,7 +137,7 @@ export function FlightPanel({
         <span className="badge-gold">
           {state.flight.liteFare ? "Carry-on only · PKR" : "All fares · PKR"}
         </span>
-        {flightSource === "live" && <span className="badge-gold">Live · SerpApi</span>}
+        {flightSource === "live" && <span className="badge-gold">Live</span>}
       </div>
 
       {flightInsights && (
