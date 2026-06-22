@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="96" fill="#0a2e26"/>
+
+  <!-- Plaza glow -->
+  <ellipse cx="256" cy="470" rx="180" ry="16" fill="#c9a227" opacity="0.12"/>
+
+  <!-- Left minaret -->
+  <rect x="72" y="200" width="36" height="240" fill="#145c4a" rx="2"/>
+  <rect x="68" y="200" width="44" height="12" fill="#c9a227" rx="2"/>
+  <rect x="84" y="140" width="12" height="62" fill="#e8c547"/>
+  <path d="M90 120 L102 140 L78 140 Z" fill="#ffe566"/>
+  <circle cx="90" cy="116" r="8" fill="#ffe566"/>
+
+  <!-- Right minaret -->
+  <rect x="404" y="200" width="36" height="240" fill="#145c4a" rx="2"/>
+  <rect x="400" y="200" width="44" height="12" fill="#c9a227" rx="2"/>
+  <rect x="416" y="140" width="12" height="62" fill="#e8c547"/>
+  <path d="M422 120 L434 140 L410 140 Z" fill="#ffe566"/>
+  <circle cx="422" cy="116" r="8" fill="#ffe566"/>
+
+  <!-- Facade -->
+  <rect x="120" y="340" width="272" height="120" fill="#1a7a68"/>
+  <path d="M168 460 L168 380 Q200 350 232 380 L232 460 Z" fill="#082e28" stroke="#c9a227" stroke-width="3"/>
+  <path d="M224 460 L224 370 Q256 330 288 370 L288 460 Z" fill="#082e28" stroke="#d4af37" stroke-width="4"/>
+  <path d="M280 460 L280 380 Q312 350 344 380 L344 460 Z" fill="#082e28" stroke="#c9a227" stroke-width="3"/>
+
+  <!-- Drum -->
+  <rect x="156" y="268" width="200" height="48" fill="#0d4a3e"/>
+  <!-- Dome -->
+  <path d="M156 268 C156 180, 210 120, 256 112 C302 120, 356 180, 356 268 Z" fill="url(#iconDome)"/>
+  <path d="M190 255 C200 175, 230 145, 256 140 C282 145, 312 175, 322 255 Z" fill="rgba(255,248,220,0.3)"/>
+  <!-- Finial -->
+  <line x1="256" y1="112" x2="256" y2="88" stroke="#d4af37" stroke-width="3"/>
+  <circle cx="256" cy="82" r="8" fill="#ffe566"/>
+
+  <defs>
+    <linearGradient id="iconDome" x1="156" y1="112" x2="356" y2="268" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffe566"/>
+      <stop offset="0.4" stop-color="#e8c547"/>
+      <stop offset="1" stop-color="#9a7a18"/>
+    </linearGradient>
+  </defs>
+</svg>

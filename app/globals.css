@@ -1,26 +1,367 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --token-onyx: #0b0f12;
+  --token-emerald: #062e03;
+  --token-gold: #d4af37;
+  --token-gold-deep: #aa820a;
+
+  --background: var(--token-onyx);
+  --foreground: #f4f4f5;
+  --karbala-deep: var(--token-onyx);
+  --karbala-green: #1a6b4f;
+  --karbala-green-light: #2d8a68;
+  --karbala-gold: var(--token-gold);
+  --karbala-gold-light: #e8c96a;
+  --karbala-burgundy: #5c1824;
+  --karbala-cream: #faf6ef;
+  --karbala-sand: #e8dcc8;
+  --karbala-card: rgba(255, 255, 255, 0.03);
+  --karbala-canvas: var(--token-onyx);
+  --karbala-muted: #71717a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-karbala-deep: var(--karbala-deep);
+  --color-karbala-green: var(--karbala-green);
+  --color-karbala-green-light: var(--karbala-green-light);
+  --color-karbala-gold: var(--karbala-gold);
+  --color-karbala-gold-light: var(--karbala-gold-light);
+  --color-karbala-burgundy: var(--karbala-burgundy);
+  --color-karbala-cream: var(--karbala-cream);
+  --color-karbala-sand: var(--karbala-sand);
+  --color-karbala-card: var(--karbala-card);
+  --color-karbala-canvas: var(--karbala-canvas);
+  --color-karbala-muted: var(--karbala-muted);
   --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic), "Scheherazade New", "Amiri", serif;
+  font-feature-settings: "mark" 1, "mkmk" 1;
+}
+
+.arabic-dua-gold {
+  background: linear-gradient(
+    120deg,
+    #f5e6b8 0%,
+    #e8c96a 18%,
+    #d4af37 42%,
+    #c9a227 62%,
+    #d4af37 82%,
+    #f0d78c 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 8px rgba(212, 175, 55, 0.25));
+}
+
+.arabic-dua-hussain {
+  background: linear-gradient(180deg, #ef4444 0%, #c41e3a 45%, #991b1b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(196, 30, 58, 0.45));
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #f0d78c 0%, var(--karbala-gold) 50%, #aa820a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Ambient backdrop ───────────────────────────────────── */
+.ambient-shell {
+  position: relative;
+  background-color: #0b0f12;
+  isolation: isolate;
+}
+
+.ambient-blob-emerald {
+  pointer-events: none;
+  position: absolute;
+  top: -12rem;
+  left: -10rem;
+  z-index: 0;
+  height: 28rem;
+  width: 28rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(6, 46, 3, 0.55) 0%, rgba(6, 46, 3, 0) 70%);
+  filter: blur(60px);
+}
+
+.ambient-blob-gold {
+  pointer-events: none;
+  position: absolute;
+  right: -8rem;
+  bottom: -6rem;
+  z-index: 0;
+  height: 24rem;
+  width: 24rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0) 70%);
+  filter: blur(70px);
+}
+
+.main-workspace {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* ── Glass panels ───────────────────────────────────────── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+.glass-panel-inactive {
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  opacity: 0.55;
+}
+
+.panel-label {
+  color: #d4d4d8;
+  font-weight: 500;
+}
+
+.panel-muted {
+  color: #a1a1aa;
+}
+
+.panel-subtle {
+  color: #71717a;
+}
+
+/* ── Sub-cards & data matrices ─────────────────────────── */
+.sub-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  transition: all 0.25s ease;
+}
+
+.sub-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.card-selectable {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  transition: all 0.25s ease;
+}
+
+.card-selectable:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.card-active {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 1rem;
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 55, 0.12),
+    0 0 24px rgba(212, 175, 55, 0.1);
+}
+
+/* ── Inputs & segments ─────────────────────────────────── */
+.input-surface {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.75rem;
+  color: #f4f4f5;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input-surface:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.input-surface::placeholder {
+  color: #71717a;
+}
+
+/* date inputs on dark bg */
+.input-surface::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+}
+
+.segment-control {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.75rem;
+  color: #a1a1aa;
+  transition: all 0.2s ease;
+}
+
+.segment-control:hover:not(.segment-control-active) {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #d4d4d8;
+}
+
+.segment-control-active {
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(212, 175, 55, 0.08);
+  color: #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(to right, #d4af37, #aa820a);
+  color: #0b0f12;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  transition: all 0.22s ease;
+  box-shadow:
+    0 4px 14px rgba(212, 175, 55, 0.2),
+    0 0 0 1px rgba(212, 175, 55, 0.15);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(to right, #e8c96a, #c9a227);
+  box-shadow:
+    0 6px 20px rgba(212, 175, 55, 0.3),
+    0 0 0 1px rgba(212, 175, 55, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-gold {
+  background: linear-gradient(to right, #d4af37, #aa820a);
+  color: #0b0f12;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.15);
+}
+
+.btn-gold:hover:not(:disabled) {
+  background: linear-gradient(to right, #e8c96a, #c9a227);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.28);
+  transform: translateY(-1px);
+}
+
+.btn-gold:active:not(:disabled),
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ── Sidebar pillars ───────────────────────────────────── */
+.sidebar-pillar-active {
+  border-color: rgba(212, 175, 55, 0.35);
+  background: linear-gradient(
+    90deg,
+    rgba(212, 175, 55, 0.14) 0%,
+    rgba(212, 175, 55, 0.04) 55%,
+    transparent 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-pillar-inactive {
+  border-color: rgba(255, 255, 255, 0.04);
+  background: transparent;
+  opacity: 0.4;
+}
+
+.sidebar-pillar-inactive:hover {
+  opacity: 0.65;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Badges & callouts ─────────────────────────────────── */
+.badge-dark {
+  border-radius: 0.375rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+}
+
+.badge-gold {
+  border-radius: 0.375rem;
+  background: rgba(212, 175, 55, 0.15);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #d4af37;
+}
+
+.callout-gold {
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(212, 175, 55, 0.06);
+  border-radius: 0.75rem;
+}
+
+.callout-emerald {
+  border: 1px solid rgba(26, 107, 79, 0.3);
+  background: rgba(6, 46, 3, 0.25);
+  border-radius: 0.75rem;
+}
+
+/* ── Price focal point ─────────────────────────────────── */
+.price-focal {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #d4af37;
+  line-height: 1.1;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+input[type="range"] {
+  accent-color: var(--karbala-gold);
 }
